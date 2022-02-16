@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: pipelines-s3-config
+  namespace: kubeflow
+data:
+  REGION: eu-central-1
+  BUCKET_NAME: 890123456789-zpa-kubeflow-dev-pipelines
+  PIPELINE_FOLDER: pipelines
+  PIPELINE_PATH: pipelines

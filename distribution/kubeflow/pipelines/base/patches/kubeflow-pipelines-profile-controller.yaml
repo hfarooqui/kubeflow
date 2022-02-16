@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeflow-pipelines-profile-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'false'
+    spec:
+      containers:
+      - name: profile-controller
+        command: [python, /hooks/sync_with_s3.py]
+        env:
+        - name: SECRET_NAME_S3_ACCESSKEY
+          value: zpa-kubeflow-dev/kubeflow/s3_accesskey
+        - name: SECRET_NAME_S3_SECRETKEY
+          value: zpa-kubeflow-dev/kubeflow/s3_secretkey
+        - name: EXTERNAL_SECRET_ROLE_ARN
+          value: arn:aws:iam::966017130552:role/kf_argoflow_deployer
+        - name: EXTERNAL_SECRET_BACKEND_TYPE
+          value: <<__external_secrets.backend_type__>>
+
+        # remove minio-related params
+        - $patch: delete
+          name: MINIO_ACCESS_KEY
+        - $patch: delete
+          name: MINIO_SECRET_KEY

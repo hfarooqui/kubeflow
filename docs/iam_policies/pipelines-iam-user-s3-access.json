@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket*",
+                "s3:GetBucket*"
+            ],
+            "Resource": "arn:aws:s3:::my-pipelines-bucket"
+        },
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Action": "s3:*Object",
+            "Resource": "arn:aws:s3:::my-pipelines-bucket/*"
+        }
+    ]
+}

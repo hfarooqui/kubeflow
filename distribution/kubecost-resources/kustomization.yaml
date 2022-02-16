@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- kubecost-virtual-service.yaml
+- dashboards/attached-disks.yaml
+- dashboards/cluster-metrics.yaml
+- dashboards/cluster-utilization.yaml
+- dashboards/deployment-utilization.yaml
+- dashboards/label-cost-utilization.yaml
+- dashboards/namespace-utilization.yaml
+- dashboards/node-utilization.yaml
+- dashboards/pod-utilization.yaml
+- dashboards/prom-benchmark.yaml
